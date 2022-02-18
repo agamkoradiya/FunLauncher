@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/appsFragment">
+
+    <fragment
+        android:id="@+id/appsFragment"
+        android:name="com.example.funlauncher.ui.fragment.app_fragment.AppsFragment"
+        android:label="fragment_apps"
+        tools:layout="@layout/fragment_apps">
+        <action
+            android:id="@+id/action_appsFragment_to_optionsBottomSheetFragment"
+            app:destination="@id/optionsBottomSheetFragment" />
+        <action
+            android:id="@+id/action_appsFragment_to_customAppsListFragment"
+            app:destination="@id/customAppsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.funlauncher.ui.fragment.home_fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_appsFragment"
+            app:destination="@id/appsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/replaceWithCustomDetailsFragment"
+        android:name="com.example.funlauncher.ui.fragment.replace_with_custom_details_fragment.ReplaceWithCustomDetailsFragment"
+        android:label="fragment_replace_with_custom_details"
+        tools:layout="@layout/fragment_replace_with_custom_details">
+        <argument
+            android:name="packageName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_replaceWithCustomDetailsFragment_to_appsFragment"
+            app:destination="@id/appsFragment"
+            app:popUpTo="@id/appsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <dialog
+        android:id="@+id/optionsBottomSheetFragment"
+        android:name="com.example.funlauncher.ui.fragment.option_dialog_fragment.OptionsBottomSheetFragment"
+        android:label="fragment_options_bottom_sheet"
+        tools:layout="@layout/fragment_options_bottom_sheet">
+        <argument
+            android:name="packageName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_optionsBottomSheetFragment_to_replaceWithCustomDetailsFragment"
+            app:destination="@id/replaceWithCustomDetailsFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/customAppsListFragment"
+        android:name="com.example.funlauncher.ui.fragment.custom_apps_list_fragment.CustomAppsListFragment"
+        android:label="fragment_custom_apps_list"
+        tools:layout="@layout/fragment_custom_apps_list" />
+</navigation>
